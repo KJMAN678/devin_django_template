@@ -12,9 +12,9 @@ $ touch .envrc
 
 # .envrc に下記を入力. xxx は適宜更新
 
-DJANGO_SUPERUSER_USERNAME=xxx
-DJANGO_SUPERUSER_EMAIL=xxx@xxx.com
-DJANGO_SUPERUSER_PASSWORD=xxx
+export DJANGO_SUPERUSER_USERNAME=xxx
+export DJANGO_SUPERUSER_EMAIL=xxx@xxx.com
+export DJANGO_SUPERUSER_PASSWORD=xxx
 
 # 環境変数を読み込む
 $ direnv allow
