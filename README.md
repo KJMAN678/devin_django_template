@@ -10,6 +10,12 @@
 # 環境変数用のファイル作成
 $ touch .envrc
 
+# .envrc に下記を入力. xxx は適宜更新
+
+DJANGO_SUPERUSER_USERNAME=xxx
+DJANGO_SUPERUSER_EMAIL=xxx@xxx.com
+DJANGO_SUPERUSER_PASSWORD=xxx
+
 # 環境変数を読み込む
 $ direnv allow
 ```
@@ -34,8 +40,22 @@ $ uvx ruff check
 $ uvx pytest
 ```
 
+### 7.Setup Local App
+
+```sh
+$ Run uv run manage.py migrate && uv run manage.py createsuperuser --noinput && uv run python manage.py runserver
+$ http://127.0.0.1:8000/ がローカルサーバーのURL
+
+$ uv run manage.py makemigrations
+$ uv run manage.py migrate
+$ uv run manage.py createsuperuser --noinput
+$ uv run python manage.py runserver
+```
+http://127.0.0.1:8000/
+
 #### 8.Additional Notes
-- 必ず日本語で回答してください を入力
+- 必ず日本語で回答してください
+を入力
 
 ### OPENAI-API で PR-Review
 - [Qodo Merge](https://qodo-merge-docs.qodo.ai/installation/github/)
@@ -49,19 +69,3 @@ $ uvx pytest
            |- workflows/
                         |-- pr_agent.yml
 ```
-
-### 起動
-
-.envrc に下記を入力. xxx は適宜更新
-```sh
-DJANGO_SUPERUSER_USERNAME=xxx
-DJANGO_SUPERUSER_EMAIL=xxx@xxx.com
-DJANGO_SUPERUSER_PASSWORD=xxx
-```
-```sh
-$ uv run manage.py makemigrations 
-$ uv run manage.py migrate
-$ uv run manage.py createsuperuser --noinput
-$ uv run python manage.py runserver
-```
-http://127.0.0.1:8000/
