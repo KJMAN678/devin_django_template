@@ -15,6 +15,7 @@ $ touch .envrc
 export DJANGO_SUPERUSER_USERNAME=xxx
 export DJANGO_SUPERUSER_EMAIL=xxx@xxx.com
 export DJANGO_SUPERUSER_PASSWORD=xxx
+export DJANGO_SECRET_KEY=hogehoge
 
 # 環境変数を読み込む
 $ direnv allow
