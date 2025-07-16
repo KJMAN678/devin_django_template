@@ -55,6 +55,9 @@ $ http://localhost:8000/ がバックエンドのURL
 
 #### 8.Additional Notes
 - 必ず日本語で回答してください
+- Python, Django を利用する
+- データベースは Postgres
+- テストは pytest を利用する
 を入力
 
 ### OPENAI-API で PR-Review
