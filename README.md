@@ -16,6 +16,9 @@ export DJANGO_SUPERUSER_USERNAME=xxx
 export DJANGO_SUPERUSER_EMAIL=xxx@xxx.com
 export DJANGO_SUPERUSER_PASSWORD=xxx
 export DJANGO_SECRET_KEY=hogehoge
+export POSTGRES_DB=hogehoge
+export POSTGRES_USER=hogehoge
+export POSTGRES_PASSWORD=hogehoge
 
 # 環境変数を読み込む
 $ direnv allow
@@ -27,32 +30,28 @@ $ brew install direnv
 ```
 #### 4.Maintain Dependencies
 ```sh
-$ uv venv && . .venv/bin/activate && uv pip install -U pip && uv pip sync requirements.txt
+$ docker compose up -d
+
+# コンテナ作り直し
+$ ./remake-container.sh
 ```
 
 #### 5.SetUp Lint
 ```sh
-$ uvx ruff check
+$ docker compose -f run --rm backend uv run ruff check .
 ```
 
 #### 6.SetUp Tests
 - no tests ran in 0.00s だと Devin の Verify が通らないっぽい
 ```sh
-$ uvx pytest
+$ docker compose -f run --rm backend uv run pytest
 ```
 
 ### 7.Setup Local App
 
 ```sh
-$ Run uv run manage.py migrate && uv run manage.py createsuperuser --noinput && uv run python manage.py runserver
-$ http://127.0.0.1:8000/ がローカルサーバーのURL
-
-$ uv run manage.py makemigrations
-$ uv run manage.py migrate
-$ uv run manage.py createsuperuser --noinput
-$ uv run python manage.py runserver
+$ http://localhost:8000/ がバックエンドのURL
 ```
-http://127.0.0.1:8000/
 
 #### 8.Additional Notes
 - 必ず日本語で回答してください
