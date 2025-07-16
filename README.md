@@ -38,19 +38,19 @@ $ ./remake-container.sh
 
 #### 5.SetUp Lint
 ```sh
-$ docker compose -f run --rm backend uv run ruff check .
+$ docker compose run --rm backend uv run ruff check .
 ```
 
 #### 6.SetUp Tests
 - no tests ran in 0.00s だと Devin の Verify が通らないっぽい
 ```sh
-$ docker compose -f run --rm backend uv run pytest
+$ docker compose run --rm backend uv run pytest
 ```
 
 ### 7.Setup Local App
 
 ```sh
-$ http://localhost:8000/ がバックエンドのURL
+$ http://localhost:8000/ がアプリケーションのURL
 ```
 
 #### 8.Additional Notes
