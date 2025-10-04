@@ -5,7 +5,7 @@ description = "django project"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "Django==5.2.4",
+    "Django==5.2.7",
     "psycopg2-binary==2.9.10",
 ]
 
