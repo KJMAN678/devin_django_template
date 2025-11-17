@@ -10,6 +10,9 @@ $ docker compose run --rm backend uv run ruff format .
 $ docker compose run --rm backend uv run djlint templates/*/*.html --extension=html.j2 --reformat
 
 http://localhost:8000/web/
+
+# セキュリティチェック
+$ docker compose run --rm backend uv tool run djcheckup http://host.docker.internal:8000/web/
 ```
 
 ### Devin
@@ -36,7 +39,7 @@ $ brew install direnv
 $ docker compose up -d
 
 # コンテナ作り直し
-$ ./remake-container.sh
+$ source ./remake_container.sh
 ```
 
 #### 5.SetUp Lint
