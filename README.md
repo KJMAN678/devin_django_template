@@ -1,3 +1,17 @@
+### Command
+
+```sh
+# app 追加
+$ mkdir web
+$ docker compose run --rm backend uv run django-admin startapp web web
+$ docker compose run --rm backend uv run ruff check . --fix
+$ docker compose run --rm backend uv run ruff format .
+# djlint によるフォーマット
+$ docker compose run --rm backend uv run djlint templates/*/*.html --extension=html.j2 --reformat
+
+http://localhost:8000/web/
+```
+
 ### Devin
 
 - [Devin's Machine](https://app.devin.ai/workspace) でリポジトリ追加
@@ -9,18 +23,7 @@
 ```sh
 # 環境変数用のファイル作成
 $ touch .envrc
-
-# .envrc に下記を入力. xxx は適宜更新
-
-export DJANGO_SUPERUSER_USERNAME=xxx
-export DJANGO_SUPERUSER_EMAIL=xxx@xxx.com
-export DJANGO_SUPERUSER_PASSWORD=xxx
-export DJANGO_SECRET_KEY=hogehoge
-export POSTGRES_DB=hogehoge
-export POSTGRES_USER=hogehoge
-export POSTGRES_PASSWORD=hogehoge
-
-# 環境変数を読み込む
+$ cp .envrc.example .envrc
 $ direnv allow
 ```
 
@@ -39,6 +42,11 @@ $ ./remake-container.sh
 #### 5.SetUp Lint
 ```sh
 $ docker compose run --rm backend uv run ruff check .
+
+# mypy による型ヒントチェック
+$ docker compose run --rm backend uv run mypy .
+
+$ docker compose run --rm backend uv run djlint templates/*/*.html --extension=html.j2 --lint
 ```
 
 #### 6.SetUp Tests

@@ -17,7 +17,17 @@ dev-dependencies = [
     "django-debug-toolbar==5.2.0",
     "pytest-django==4.11.1",
     "factory-boy==3.3.3",
+    "djlint==1.36.4",
+    "mypy>=1.18.2",
+    "django-stubs[compatible-mypy]==5.2.7",
 ]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.mypy]
+plugins = ["mypy_django_plugin.main"]
+mypy_path = "."
+
+[tool.django-stubs]
+django_settings_module = "config.settings"
