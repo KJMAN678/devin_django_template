@@ -17,22 +17,32 @@ DEBUG = True
 ALLOWED_HOSTS: list[str] = [
     "host.docker.internal",
     "localhost",
+    "127.0.0.1",
 ]
 
 
 # Application definition
 
-INSTALLED_APPS = [
+BASE_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+]
+
+THIRD_PARTY_APPS = [
+    "debug_toolbar",
+]
+
+CUSTOM_APPS = [
     "web",
 ]
 
-MIDDLEWARE = [
+INSTALLED_APPS = BASE_APPS + THIRD_PARTY_APPS + CUSTOM_APPS
+
+BASE_MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -41,6 +51,13 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+THIRD_PARTY_MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    # "debug_toolbar.middleware.show_toolbar_with_docker",
+]
+
+MIDDLEWARE = BASE_MIDDLEWARE + THIRD_PARTY_MIDDLEWARE
 
 ROOT_URLCONF = "config.urls"
 
@@ -111,9 +128,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+DEBUG_TOOLBAR_CONFIG = {
+    "SHOW_TOOLBAR_CALLBACK": lambda request: True,  # Trueを返すlambda関数を設定
+}
