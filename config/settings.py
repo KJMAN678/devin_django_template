@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 
+from django.conf import settings
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -52,10 +54,10 @@ BASE_MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-THIRD_PARTY_MIDDLEWARE = [
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
-    # "debug_toolbar.middleware.show_toolbar_with_docker",
-]
+THIRD_PARTY_MIDDLEWARE = []
+
+if DEBUG:
+    THIRD_PARTY_MIDDLEWARE.append("debug_toolbar.middleware.DebugToolbarMiddleware")
 
 MIDDLEWARE = BASE_MIDDLEWARE + THIRD_PARTY_MIDDLEWARE
 
@@ -139,6 +141,4 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-DEBUG_TOOLBAR_CONFIG = {
-    "SHOW_TOOLBAR_CALLBACK": lambda request: True,  # Trueを返すlambda関数を設定
-}
+DEBUG_TOOLBAR_CONFIG = {"SHOW_TOOLBAR_CALLBACK": lambda request: settings.DEBUG}
