@@ -46,6 +46,9 @@ $ source ./remake_container.sh
 ```sh
 $ docker compose run --rm backend uv run ruff check .
 
+# 参考 フォーマット
+$ docker compose run --rm backend uv run ruff format .
+
 # mypy による型ヒントチェック
 $ docker compose run --rm backend uv run mypy .
 
