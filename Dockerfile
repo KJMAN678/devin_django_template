@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     libpq-dev \
     postgresql-client \
-    && uv sync --frozen --no-dev \
+    && uv sync --dev \
     && apt-get purge -y build-essential libpq-dev \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
