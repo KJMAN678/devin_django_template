@@ -82,3 +82,21 @@ $ http://localhost:8000/ がアプリケーションのURL
 - テストは pytest を利用する
 を入力
 
+### その他
+```sh
+# コンテナ イメージのサイズを確かめる
+$ docker image ls
+
+# docker のセキュリティチェック
+$ docker scout quickview <image>:<tag>
+$ docker scout cves <image>:<tag>
+
+# docker の linter
+$ hadolint Dockerfile
+
+# インストール可能なLinux ライブラリのバージョンチェックのためにコンテナに入る
+$ docker ps
+$ docker exec -it devin_django_template-backend-1 bash
+$ apt-get update
+$ apt-cache policy <library>
+```

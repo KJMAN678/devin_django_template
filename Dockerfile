@@ -6,9 +6,9 @@ COPY . /app
 
 # psycopg2 ビルドに必要なパッケージをインストール
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    libpq-dev \
-    postgresql-client \
+    build-essential=12.9 \
+    libpq-dev=15.14-0+deb12u1 \
+    postgresql-client=15+248+deb12u1 \
     && uv sync --dev \
     && apt-get purge -y build-essential libpq-dev \
     && apt-get autoremove -y \
