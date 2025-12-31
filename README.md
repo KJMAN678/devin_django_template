@@ -25,6 +25,9 @@ $ docker compose run --rm backend uv tool run djcheckup http://host.docker.inter
 #### 2.Configure Secrets
 ```sh
 # 環境変数用のファイル作成
+$ source ./make_envrc.sh
+
+- 下記を実行
 $ touch .envrc
 $ cp .envrc.example .envrc
 $ direnv allow
