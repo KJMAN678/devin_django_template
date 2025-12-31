@@ -5,6 +5,9 @@
 $ mkdir web
 $ docker compose exec backend django-admin startapp web web
 
+# make migration
+$ docker compose exec backend python manage.py makemigrations
+
 http://127.0.0.1:8000/web/
 
 # セキュリティチェック
@@ -102,4 +105,9 @@ $ docker ps
 $ docker exec -it devin_django_template-backend-1 bash
 $ apt-get update
 $ apt-cache policy <library>
+```
+
+### 管理コマンド
+```sh
+$ docker compose exec backend python manage.py query_dummy_data
 ```
