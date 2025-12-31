@@ -3,10 +3,24 @@ name = "django_project"
 version = "0.1.0"
 description = "django project"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = "<3.14, >=3.13"
 dependencies = [
-    "Django==5.2.9",
+    "Django==6.0",
     "psycopg2==2.9.11",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff==0.14.10",
+    "pytest==9.0.2",
+    "django-debug-toolbar==6.1.0",
+    "pytest-django==4.11.1",
+    "factory-boy==3.3.3",
+    "djlint==1.36.4",
+    "django-stubs==5.2.8",
+    "pyrefly==0.46.3",
+    "djcheckup==0.6.0",
+    "taskipy==1.14.1",
 ]
 
 [tool.uv]
@@ -14,14 +28,6 @@ link-mode = "copy"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-
-[tool.mypy]
-plugins = ["mypy_django_plugin.main"]
-mypy_path = "."
-
-[[tool.mypy.overrides]]
-module = ["debug_toolbar.*"]
-ignore_missing_imports = true
 
 [tool.django-stubs]
 django_settings_module = "config.settings"
@@ -34,16 +40,24 @@ select = [
    "I",
 ]
 
-[dependency-groups]
-dev = [
-    "ruff==0.14.7",
-    "pytest==9.0.1",
-    "django-debug-toolbar==6.1.0",
-    "pytest-django==4.11.1",
-    "factory-boy==3.3.3",
-    "djlint==1.36.4",
-    "django-stubs[compatible-mypy]==5.2.8",
-    "djcheckup>=0.5.0",
+[tool.pyrefly]
+project-includes = [
+    "**/*.py*",
+    "**/*.ipynb",
 ]
 
-
+[tool.taskipy.tasks]
+test = "uv run pytest"
+lint = """
+ruff check .
+pyrefly check --summarize-errors
+pyrefly check --suppress-errors
+djlint templates/*/*.html --extension=html.j2 --check
+djlint templates/*/*.html --extension=html.j2 --lint
+"""
+fix = """
+ruff check . --fix
+ruff format .
+pyrefly check --remove-unused-ignores
+djlint templates/*/*.html --extension=html.j2 --reformat
+"""
