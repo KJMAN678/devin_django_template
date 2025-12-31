@@ -4,10 +4,6 @@
 # app 追加
 $ mkdir web
 $ docker compose run --rm backend uv run django-admin startapp web web
-$ docker compose run --rm backend uv run ruff check . --fix
-$ docker compose run --rm backend uv run ruff format .
-# djlint によるフォーマット
-$ docker compose run --rm backend uv run djlint templates/*/*.html --extension=html.j2 --reformat
 
 http://127.0.0.1:8000/web/
 
@@ -47,20 +43,29 @@ $ source ./remake_container.sh
 
 #### 5.SetUp Lint
 ```sh
+$ docker compose run --rm backend uv run task lint
+
+- 下記を実行
 $ docker compose run --rm backend uv run ruff check .
-
-# 参考 フォーマット
-$ docker compose run --rm backend uv run ruff format .
-
-# mypy による型ヒントチェック
 $ docker compose run --rm backend uv run mypy .
-
+$ docker compose run --rm backend uv run djlint templates/*/*.html --extension=html.j2 --check
 $ docker compose run --rm backend uv run djlint templates/*/*.html --extension=html.j2 --lint
+
+# 修正
+$ docker compose run --rm backend uv run task fix
+
+- 下記を実行
+$ docker compose run --rm backend uv run ruff check . --fix
+$ docker compose run --rm backend uv run ruff format .
+$ docker compose run --rm backend uv run djlint templates/*/*.html --extension=html.j2 --reformat
 ```
 
 #### 6.SetUp Tests
 - no tests ran in 0.00s だと Devin の Verify が通らないっぽい
 ```sh
+$ docker compose run --rm backend uv run task test
+
+- 下記を実行
 $ docker compose run --rm backend uv run pytest
 ```
 
