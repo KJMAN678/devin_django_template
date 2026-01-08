@@ -29,7 +29,10 @@ $ source ./make_envrc.sh
 - 下記を実行
 $ touch .envrc
 $ cp .envrc.example .envrc
+
 $ direnv allow
+or
+$ source .envrc
 ```
 
 - ローカル用
