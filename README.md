@@ -1,3 +1,7 @@
+### Install
+- mise をインストールする
+  - [mise](https://mise.jdx.dev/getting-started.html#installing-mise-cli)
+
 ### Command
 
 ```sh
@@ -24,15 +28,7 @@ $ docker compose exec backend djcheckup http://host.docker.internal:8000/web/
 #### 2.Configure Secrets
 ```sh
 # 環境変数用のファイル作成
-$ source ./make_envrc.sh
-
-- 下記を実行
-$ touch .envrc
-$ cp .envrc.example .envrc
-
-$ direnv allow
-or
-$ source .envrc
+$ mise make_envrc
 ```
 
 - ローカル用
@@ -44,10 +40,10 @@ $ brew install direnv
 $ docker compose up -d
 
 # コンテナ作り直し
-$ source ./remake_container.sh
+$ mise remake_container
 ```
 
-#### 5.SetUp Lint
+#### 5.Set Up Lint
 ```sh
 $ docker compose exec backend task lint
 

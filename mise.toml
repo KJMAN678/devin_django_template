@@ -1,0 +1,22 @@
+[env]
+_.file = ".env"
+
+[tools]
+
+[tasks.remake_container]
+description = "コンテナを再作成"
+run = """
+docker compose down
+docker compose build
+docker compose up -d
+"""
+
+[tasks.make_envrc]
+description = "環境変数ファイルを作成"
+run = """
+if [ ! -f .envrc ]
+then
+  touch .envrc
+  cp .envrc.example .envrc
+fi
+"""
