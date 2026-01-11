@@ -43,7 +43,7 @@ $ docker compose up -d
 $ mise remake_container
 ```
 
-#### 5.SetUp Lint
+#### 5.Set Up Lint
 ```sh
 $ docker compose exec backend task lint
 
