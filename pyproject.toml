@@ -47,7 +47,7 @@ project-includes = [
 ]
 
 [tool.taskipy.tasks]
-test = "uv run pytest"
+test = "pytest"
 lint = """
 ruff check .
 pyrefly check --summarize-errors
