@@ -14,10 +14,10 @@ docker compose up -d
 [tasks.make_envrc]
 description = "環境変数ファイルを作成"
 run = """
-if [ ! -f .envrc ]
+if [ ! -f .env ]
 then
-  touch .envrc
-  cp .envrc.example .envrc
+  touch .env
+  cp .env.example .env
 fi
 """
 
