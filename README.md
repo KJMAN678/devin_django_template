@@ -2,6 +2,10 @@
 - mise をインストールする
   - [mise](https://mise.jdx.dev/getting-started.html#installing-mise-cli)
 
+### Claude Code
+- GitHub の Settings > Secrets and variables > Actions > New repository secret で ANTHROPIC_API_KEY を追加
+- Claude Code の対象リポジトリに追加する
+
 ### Command
 
 ```sh
@@ -45,7 +49,7 @@ $ mise remake_container
 
 #### 5.Set Up Lint
 ```sh
-$ docker compose exec backend task lint
+$ mise lint
 
 - 下記を実行
 $ docker compose exec backend ruff check .
@@ -55,7 +59,7 @@ $ docker compose exec backend djlint templates/*/*.html --extension=html.j2 --ch
 $ docker compose exec backend djlint templates/*/*.html --extension=html.j2 --lint
 
 # 修正
-$ docker compose exec backend task fix
+$ mise fix
 
 - 下記を実行
 $ docker compose exec backend ruff check . --fix
@@ -67,7 +71,7 @@ $ docker compose exec backend pyrefly check --remove-unused-ignores
 #### 6.SetUp Tests
 - no tests ran in 0.00s だと Devin の Verify が通らないっぽい
 ```sh
-$ docker compose exec backend task test
+$ mise test
 
 - 下記を実行
 $ docker compose exec backend pytest

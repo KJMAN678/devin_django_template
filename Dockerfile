@@ -7,7 +7,7 @@ COPY pyproject.toml uv.lock ./
 # psycopg2 ビルドに必要なパッケージをインストール
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential=12.9 \
-    libpq-dev=15.15-0+deb12u1 \
+    libpq-dev \
     postgresql-client=15+248+deb12u1 \
     && uv pip install -r pyproject.toml --all-extras --system \
     && apt-get purge -y build-essential libpq-dev \
@@ -26,7 +26,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 # psycopg2 ビルドに必要なパッケージをインストール
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential=12.9 \
-    libpq-dev=15.15-0+deb12u1 \
+    libpq-dev \
     postgresql-client=15+248+deb12u1 \
     && apt-get purge -y build-essential libpq-dev \
     && apt-get autoremove -y \
