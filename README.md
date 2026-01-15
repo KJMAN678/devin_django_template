@@ -2,6 +2,10 @@
 - mise をインストールする
   - [mise](https://mise.jdx.dev/getting-started.html#installing-mise-cli)
 
+### Claude Code
+- GitHub の Settings > Secrets and variables > Actions > New repository secret で ANTHROPIC_API_KEY を追加
+- Claude Code の対象リポジトリに追加する
+
 ### Command
 
 ```sh
