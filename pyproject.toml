@@ -5,22 +5,21 @@ description = "django project"
 readme = "README.md"
 requires-python = "<3.14, >=3.13"
 dependencies = [
-    "Django==6.0",
+    "Django==6.0.1",
     "psycopg2==2.9.11",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "ruff==0.14.10",
+    "ruff==0.14.11",
     "pytest==9.0.2",
     "django-debug-toolbar==6.1.0",
     "pytest-django==4.11.1",
     "factory-boy==3.3.3",
     "djlint==1.36.4",
     "django-stubs==5.2.8",
-    "pyrefly==0.46.3",
+    "pyrefly==0.48.0",
     "djcheckup==0.6.0",
-    "taskipy==1.14.1",
 ]
 
 [tool.uv]
@@ -45,19 +44,3 @@ project-includes = [
     "**/*.py*",
     "**/*.ipynb",
 ]
-
-[tool.taskipy.tasks]
-test = "pytest"
-lint = """
-ruff check .
-pyrefly check --summarize-errors
-pyrefly check --suppress-errors
-djlint templates/*/*.html --extension=html.j2 --check
-djlint templates/*/*.html --extension=html.j2 --lint
-"""
-fix = """
-ruff check . --fix
-ruff format .
-pyrefly check --remove-unused-ignores
-djlint templates/*/*.html --extension=html.j2 --reformat
-"""

@@ -20,3 +20,29 @@ then
   cp .envrc.example .envrc
 fi
 """
+
+
+[tasks.lint]
+description = "lint"
+run = """
+docker compose exec backend ruff check .
+docker compose exec backend pyrefly check --summarize-errors
+docker compose exec backend pyrefly check --suppress-errors
+docker compose exec backend djlint templates/*/*.html --extension=html.j2 --check
+docker compose exec backend djlint templates/*/*.html --extension=html.j2 --lint
+"""
+
+[tasks.fix]
+description = "fix"
+run = """
+docker compose exec backend ruff check . --fix
+docker compose exec backend ruff format .
+docker compose exec backend pyrefly check --remove-unused-ignores
+docker compose exec backend djlint templates/*/*.html --extension=html.j2 --reformat
+"""
+
+[tasks.test]
+description = "test"
+run = """
+docker compose exec backend pytest
+"""
