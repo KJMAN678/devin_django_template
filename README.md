@@ -37,8 +37,13 @@ $ mise make_envrc
 
 - ローカル用
 ```sh
-$ brew install direnv
+$ brew install mise
 ```
+- Devin用
+```sh
+$ curl https://mise.run | sh
+```
+
 #### 4.Maintain Dependencies
 ```sh
 $ docker compose up -d
